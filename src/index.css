@@ -15,6 +15,9 @@
   html {
     font-family: var(--font-sans);
     font-feature-settings: "rlig" 1, "calt" 1;
+    scroll-behavior: smooth;
+    background: #000;
+    color-scheme: dark;
   }
 
   body {
@@ -22,8 +25,9 @@
   }
 }
 
-/* Custom utility classes for shadcn/ui patterns */
+/* Animations & utilities */
 @layer utilities {
+  /* shadcn-like helpers */
   .animate-in {
     animation-name: animateIn;
     animation-duration: 350ms;
@@ -43,4 +47,29 @@
     --tw-exit-translate-x: initial;
     --tw-exit-translate-y: initial;
   }
+
+  .shadow-neon {
+    filter: drop-shadow(0 0 18px rgba(59,130,246,0.55)) drop-shadow(0 0 28px rgba(168,85,247,0.45));
+  }
+
+  .shadow-glow {
+    box-shadow: 0 0 12px rgba(59,130,246,0.6), 0 0 24px rgba(168,85,247,0.4);
+  }
+
+  .animate-float { animation: float 6s ease-in-out infinite; }
+  .animate-float-slow { animation: float 8.5s ease-in-out infinite; }
+  .animate-float-fast { animation: float 4.5s ease-in-out infinite; }
+
+  .glow-flicker { animation: glowFlicker 2.4s ease-in-out infinite; }
+}
+
+@keyframes float {
+  0%, 100% { transform: translateY(0) translateX(0); opacity: 0.9; }
+  50% { transform: translateY(-8px) translateX(2px); opacity: 1; }
+}
+
+@keyframes glowFlicker {
+  0%, 100% { filter: drop-shadow(0 0 6px rgba(168,85,247,0.4)); }
+  35% { filter: drop-shadow(0 0 14px rgba(59,130,246,0.7)); }
+  60% { filter: drop-shadow(0 0 10px rgba(6,182,212,0.6)); }
 }
